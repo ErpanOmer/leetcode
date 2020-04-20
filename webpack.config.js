@@ -8,15 +8,16 @@ module.exports = {
     filename: 'leetcode.js'
   },
   devServer: {
+    overlay: true,
     open: true,
     port: 9000
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'LeetCode 算法测试',
-      filename: 'index.html',
-      template: 'index.html'
-    })
+    // new CleanWebpackPlugin(),
+    // new HtmlWebpackPlugin({
+    //   title: 'LeetCode 算法测试',
+    //   filename: 'index.html',
+    //   template: 'index.html'
+    // })
   ],
 }
