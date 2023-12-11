@@ -12,24 +12,31 @@ var strStr = function(haystack, needle) {
         return -1
     }
 
-    for (let i = 0; i < haystack.length + 1; i++) {
-        if (haystack[i] === needle[0]) {
-            let length = needle.length
+    let j = 0
 
-            while(length--) {
-                if (haystack[i + length] !== needle[length]) {
-                    break
-                }
+    for (let i = 0; i < haystack.length; i++) {
+        if (haystack[i] === needle[j]) {
+            j++
+        } else {
+            if (j > 0) {
+                i = i -j
             }
 
-            if (length === -1) {
-                return i
-            }
+            j = 0
+        }
+
+        if (j === needle.length) {
+            return i - j + 1
         }
     }
 
     return -1
 };
+
+
+// KMP算法
+// 时间复杂度：O(n)
+// 空间复杂度：O(1)
 
 
 console.log(strStr("sadbutsad", "sad"))
