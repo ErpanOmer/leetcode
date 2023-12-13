@@ -32,6 +32,12 @@ var isPalindrome = function(s) {
 };
 
 
+
+
+// 时间复杂度：O(n)
+// 空间复杂度：O(1)
+
+
 console.log(isPalindrome('A man, a plan, a canal: Panama'))
 console.log(isPalindrome('race a car'))
 console.log(isPalindrome(' '))
