@@ -3,12 +3,6 @@
  * @return {number}
  */
 var calculate = function(string) {
-    const stack = ['0']
-    const calc = []
-    string = string.replace(/ /g, '')
-    string = string.replace('(-', '(0-')
-    string = string.replace('(+', '(0+')
-
     var evalRPN = function(tokens) {
         const stack = []
         const comp = new Set(['+', '-', '*', '/'])
@@ -40,59 +34,75 @@ var calculate = function(string) {
         return stack.pop()
     }
 
+    string = string.replace(/ /g, '')
 
-    let sign = 1
+    if (string[0] === '-') {
+        string = '0' + string
+    }
+
+    string = string.replace('-(', '+0-(')
+    string = string.replace('(-', '(0-')
+
+    const s1 = []
+    const s2 = []
 
     for (let i = 0; i < string.length; i++) {
         const s = string[i]
 
-        if (s === '(') {
-            calc.push(s)
-            sign = 1
-            continue
-        }
-
-        if (s === ')') {
-            while(calc[calc.length - 1] !== '(') {
-                stack.push(calc.pop())
-            }
-
-            calc.pop()
-
-            continue
-        }
-
-        if (s === '+' || s === '-') {
-
-            calc.push('+')
-
-            sign = s === '+' ? 1 : -1
-        }  else {
+        if (!isNaN(Number(s))) {
             let str = ''
 
             while(!Number.isNaN(Number(string[i]))) {
                 str += string[i++]
             }
 
-            stack.push(Number(str) * sign)
+            s1.push(str)
 
             if (str) {
                 i--
             }
         }
+
+        if (s === '(') {
+            s2.push(s)
+        }
+
+        if (s === ')') {
+            let p = s2.pop()
+
+            while(p !== '(') {
+                s1.push(p)
+                p = s2.pop()
+            }
+        }
+
+        if (s === '+' || s === '-') {
+            if (!s2.length) {
+                s2.push(s)
+            } else {
+                if (s2[s2.length - 1] !== '(') {
+                    s1.push(s2.pop())
+                    s2.push(s)
+                } else {
+                    s2.push(s)
+                }
+            }
+        }
         
-        // console.log(calc, stack)
     }
 
-    // console.log(calc, stack)
 
-    while(calc.length) {
-        stack.push(calc.pop())
+    while(s2.length) {
+        s1.push(s2.pop())
     }
-
     
-    return evalRPN(stack)
+    return evalRPN(s1)
 };
+
+
+// 中序表达式 -> 逆波兰表达式 再进行计算
+// 时间复杂度：O(n)
+// 空间复杂度：O(n)
 
 console.log(calculate("- (3 + (4 + 5))"))
 console.log(calculate("(1+(4+5+2)-3)+(6+8)"))
