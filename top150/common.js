@@ -1,3 +1,16 @@
+
+// 链表结构
+export function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+}
+
+export function TreeNode(val, left, right) {
+    this.val = (val === undefined ? 0 : val)
+    this.left = (left === undefined ? null : left)
+    this.right = (right === undefined ? null : right)
+}
+
 // 链表反转算法
 function reverseLink (head) {
     let pre = null
@@ -66,8 +79,55 @@ export function LinkToArray (head) {
     return arr
 }
 
-// 链表结构
-export function ListNode(val, next) {
-    this.val = (val === undefined ? 0 : val)
-    this.next = (next === undefined ? null : next)
+
+export function ArrayToTree(array) {
+    if (!array.length) {
+        return null
+    }
+
+    array[0] = new TreeNode(array[0])
+
+    for (let i = 1; i < array.length; i++) {
+        const parentIndex = Math.floor((i - 1) / 2)
+        array[i] = array[i] ? new TreeNode(array[i]) : array[i]
+
+        // 左节点
+        if (2 * parentIndex + 1 === i) {
+            array[parentIndex].left = array[i]
+        }
+
+        // 右节点
+        if (2 * parentIndex + 2 === i) {
+            array[parentIndex].right = array[i]
+        }
+    }
+
+    return array[0]
+}
+
+export function TreeToArray(root) {
+    const queue = [root]
+    const array = []
+
+    if (!root) {
+        return array
+    }
+
+    while (queue.length) {
+        const node = queue.shift()
+
+        if (node) {
+            array.push(node.val)
+
+            if (node.left || node.right) {
+                queue.push(node.left)
+                queue.push(node.right)
+            }
+
+        } else {
+            array.push(null)
+        }
+    }
+
+    return array
 }
