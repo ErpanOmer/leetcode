@@ -92,12 +92,12 @@ export function ArrayToTree(array) {
         array[i] = array[i] ? new TreeNode(array[i]) : array[i]
 
         // 左节点
-        if (2 * parentIndex + 1 === i) {
+        if (2 * parentIndex + 1 === i && array[parentIndex]) {
             array[parentIndex].left = array[i]
         }
 
         // 右节点
-        if (2 * parentIndex + 2 === i) {
+        if (2 * parentIndex + 2 === i &&  array[parentIndex]) {
             array[parentIndex].right = array[i]
         }
     }
