@@ -81,28 +81,34 @@ export function LinkToArray (head) {
 
 
 export function ArrayToTree(array) {
-    if (!array.length) {
+    const length = array.length
+
+    if (!length) {
         return null
     }
 
-    array[0] = new TreeNode(array[0])
+    const root = new TreeNode(array[0])
+    const queue = [root]
 
-    for (let i = 1; i < array.length; i++) {
-        const parentIndex = Math.floor((i - 1) / 2)
-        array[i] = array[i] ? new TreeNode(array[i]) : array[i]
+    for (let i = 1; i < length;) {
+        const node = queue.shift()
 
-        // 左节点
-        if (2 * parentIndex + 1 === i && array[parentIndex]) {
-            array[parentIndex].left = array[i]
+        if (array[i] !== null) {
+            node.left = new TreeNode(array[i])
+            queue.push(node.left)
         }
 
-        // 右节点
-        if (2 * parentIndex + 2 === i &&  array[parentIndex]) {
-            array[parentIndex].right = array[i]
+        i++
+
+        if (i < length && array[i] !== null) {
+            node.right = new TreeNode(array[i])
+            queue.push(node.right)
         }
+
+        i++
     }
 
-    return array[0]
+    return root
 }
 
 export function TreeToArray(root) {
