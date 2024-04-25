@@ -1,4 +1,3 @@
-
 // 链表结构
 export function ListNode(val, next) {
     this.val = (val === undefined ? 0 : val)
