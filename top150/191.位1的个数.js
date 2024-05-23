@@ -6,8 +6,8 @@ var hammingWeight = function(n) {
     let count = 0
 
     while(n) {
-        count += n % 2
-        n /= 2
+        n = n & (n - 1)
+        count++
     }
 
     return count

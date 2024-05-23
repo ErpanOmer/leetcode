@@ -3,12 +3,15 @@
  * @return {number} - a positive integer
  */
 var reverseBits = function(n) {
-    let rev = 0;
-    for (let i = 0; i < 32 && n > 0; ++i) {
-        rev |= (n & 1) << (31 - i);
-        n >>>= 1;
+    let rev = 0
+    let length = 32
+
+    while(length--) {
+        rev = (rev << 1) | (n & 1)
+        n >>= 1
     }
-    return rev >>> 0;
+
+    return rev >>> 0
 };
 
 
