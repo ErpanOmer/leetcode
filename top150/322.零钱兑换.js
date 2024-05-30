@@ -10,51 +10,52 @@ var coinChange = function(coins, amount) {
 
     for (let i = 1; i <= amount; i++) {
         let min = Number.MAX_SAFE_INTEGER
-        
-        for (let j = 0; j < coins.length; j++) {
-            if (i - coins[j] >= 0 && dp[i - coins[j]] < min) {
-                min = dp[i - coins[j]] + 1
-            }            
+
+        for (const coin of coins) {
+            if (i >= coin && dp[i - coin] < min) {
+                min = dp[i - coin]
+            }
         }
 
         dp[i] = min
     }
 
-    return dp[amount] == Number.MAX_SAFE_INTEGER ? - 1 : dp[amount]
+    return dp[amount] === Number.MAX_SAFE_INTEGER ? - 1 : dp[amount]
 };
 
 //回溯暴力破解
-var coinChange = function(coins, amount) {
-    const min = Math.min(...coins)
-    let i = 0
-    let map = new Set()
-    let count = Number.MAX_SAFE_INTEGER
+// var coinChange = function(coins, amount) {
+//     const min = Math.min(...coins)
+//     let i = 0
+//     let map = new Set()
+//     let count = Number.MAX_SAFE_INTEGER
 
-    const dfs = (amount, i = 0) => {
-        if (amount === 0) {
-            return count = Math.min(i, count)
-        }
+//     const dfs = (amount, i = 0) => {
+//         const k = `${amount}-${i}`
+//         if (map.has(k)) {
+//             return Number.MAX_SAFE_INTEGER
+//         }
 
-        const k = `${amount}-${i}`
-        if (map.has(k)) {
-            return
-        }
+//         map.add(k)
 
-        map.add(k)
+//         for (const iterator of coins) {
+//             if (amount >= iterator) {
+//                 const j = amount - iterator === 0 ? i + 1 : dfs(amount - iterator, i + 1)
+//                 if (j < count) {
+//                     count = j
+//                 }
+//             }
+//         }
 
-        for (const iterator of coins) {
-            if (amount >= iterator) {
-                dfs(amount - iterator, i + 1)
-            }
-        }
-    }
+//         return count
+//     }
 
-    dfs(amount)
+//     dfs(amount)
 
-    return count === Number.MAX_SAFE_INTEGER ? -1 : count
-};
+//     return count === Number.MAX_SAFE_INTEGER ? -1 : count
+// };
 
 
 console.time('s')
-console.log(coinChange([3,7,405,436], 8839))
+console.log(coinChange([2], 1))
 console.timeEnd('s')
