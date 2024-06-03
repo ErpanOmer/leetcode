@@ -50,4 +50,29 @@ var lengthOfLIS = function(nums) {
 };
 
 
-console.log(lengthOfLIS([1,3,6,7,9,4,10,5,6]))
+// 桶排序 + 二分查找  => 耐心排序
+var lengthOfLIS = function(nums) {
+    const top = []
+
+    for (const n of nums) {
+        let i = 0
+        let j = top.length
+
+        while(i < j) {
+            const m = (i + j) >> 1
+
+            if (n > top[m]) {
+                i = m + 1
+            } else {
+                j = m
+            }
+        }
+
+        top[i] = n
+    }
+
+    return top.length
+};
+
+
+console.log(lengthOfLIS([7,7,7,7,7,7,7]))
