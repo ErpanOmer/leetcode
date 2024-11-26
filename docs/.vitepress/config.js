@@ -24,8 +24,5 @@ export default defineConfig({
       message: '❤ With Algorithm',
       copyright: `Copyright © ${new Date().getFullYear()}-present Erpan Omer`
     },
-    search: {
-      provider: 'local'
-    }
   }
 })
