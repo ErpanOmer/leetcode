@@ -1,12 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import dirs from '../dirs'
+import { excludeDirs } from '../routes'
 
 export default {
     paths: () => {
         const paths = []
 
-        for (const dir of dirs) {
+        for (const dir of excludeDirs) {
             const files = fs.readdirSync(dir)
 
             for (const file of files) {

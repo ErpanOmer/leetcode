@@ -1,9 +1,9 @@
-import dirs from "../dirs"
 import fs from 'fs'
+import { excludeDirs } from '../routes'
 
 export default {
     paths () {
-        return dirs.map(dir => ({
+        return excludeDirs.map(dir => ({
             params: {
                 series: dir,
                 files: fs.readdirSync(dir)

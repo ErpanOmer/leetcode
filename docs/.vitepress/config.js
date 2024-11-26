@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { nav, sidebar } from '../routes'
 
 export default defineConfig({
   // 站点级选项
@@ -7,12 +8,24 @@ export default defineConfig({
   base: '/leetcode/',
   cleanUrls: true,
   lastUpdated: true,
-
+  appearance: 'force-dark',
+  sitemap: {
+    hostname: 'https://erpanomer.github.io/leetcode/'
+  },
   themeConfig: {
+    siteTitle: 'Leetcode',
     // 主题级选项
-    nav: [
-      { text: 'Top100', link: '/top100' },
-      { text: 'Top150', link: '/top150' },
-    ]
+    nav,
+    sidebar,
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/ErpanOmer' },
+    ],
+    footer: {
+      message: '❤ With Algorithm',
+      copyright: `Copyright © ${new Date().getFullYear()}-present Erpan Omer`
+    },
+    search: {
+      provider: 'local'
+    }
   }
 })
