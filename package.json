@@ -1,10 +1,10 @@
 {
-    "name": "leetcode",
-    "type": "module",
-    "devDependencies": {
-        "vitepress": "^1.5.0"
-    },
-    "scripts": {
+  "name": "leetcode",
+  "type": "module",
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  },
+  "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
