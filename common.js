@@ -40,7 +40,7 @@ export function LinkToArray (head) {
     return arr
 }
 
-
+// 数组转树
 export function ArrayToTree(array) {
     const length = array.length
 
@@ -72,6 +72,7 @@ export function ArrayToTree(array) {
     return root
 }
 
+// 树转数组
 export function TreeToArray(root) {
     const queue = [root]
     const array = []
@@ -99,6 +100,7 @@ export function TreeToArray(root) {
     return array
 }
 
+// 数组转图
 export function ArrayToGraph (array) {
     function Node(val, neighbors) {
         this.val = val === undefined ? 0 : val;
