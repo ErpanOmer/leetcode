@@ -1,38 +1,39 @@
-function mergeSort (array, left = 0, right = Infinity) {
-    if (right === Infinity) {
-        right = array.length - 1
+function mergeSort(array) {
+
+    // 合并
+    const merge = (a, b) => {
+        const temp = []
+
+        let i = 0
+        let j = 0
+
+        while (i < a.length && j < b.length) {
+            temp.push(a[i] > b[j] ? b[j++] : a[i++])
+        }
+
+        while (i < a.length) {
+            temp.push(a[i++])
+        }
+
+        while (j < b.length) {
+            temp.push(b[j++])
+        }
+
+        return temp
     }
 
-    if (left >= right) {
-        return []
+    // 分解
+    const divide = (i, j) => {
+        if (i > j) return []
+        if (i === j) return [array[i]]
+
+        const middle = Math.floor((i + j) / 2)
+
+        return merge(divide(i, middle), divide(middle + 1, j))
     }
 
-    const middle = Math.floor((left + right) / 2)
-
-    mergeSort(array, left, middle)
-    mergeSort(array, middle + 1, right)
-
-    const temp = []
-    let i = left, j = middle + 1
-
-    for (; i <= middle && j <= right;) {        
-        temp.push(array[i] <= array[j] ? array[i++] : array[j++])
-    }
-
-    while(i <= middle) {
-        temp.push(array[i++])
-    }
-
-    while(j <= right) {
-        temp.push(array[j++])
-    }
-
-    for (const t of temp) {
-        array[left++] = t
-    }
-
-    return array
+    return divide(0, array.length - 1)
 }
 
 
-console.log(mergeSort([-1,5,3,4,0, 7, 6]))
+console.log(mergeSort([]))
