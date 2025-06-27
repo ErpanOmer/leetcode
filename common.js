@@ -123,24 +123,6 @@ export function ArrayToGraph (array) {
     return map.get(1) || null
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 链表反转算法
 function reverseLink (head) {
     let pre = null
