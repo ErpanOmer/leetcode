@@ -5,7 +5,7 @@ export default defineConfig({
   // 站点级选项
   title: 'Leetcode',
   description: 'Just playing around.',
-  // base: '/projects/leetcode/',
+  base: '/projects/leetcode/',
   cleanUrls: true,
   lastUpdated: true,
   appearance: 'force-dark',
