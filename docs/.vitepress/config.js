@@ -11,13 +11,34 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   appearance: 'force-dark',
+  head: [
+    // 基础 favicon
+    ['link', { rel: 'icon', href: 'https://erpanomer.nurverse.com/favicon.ico' }],
+    // 2. Canonical
+    ['link', { rel: 'canonical', href: 'https://erpanomer.nurverse.com/projects/leetcode/' }],
+    
+    // 3. SEO 关键词
+    ['meta', { name: 'keywords', content: 'leetcode, algorithm, 算法, 题解' }],
+    
+    // 4. Open Graph (用于社交媒体分享预览)
+    ['meta', { property: 'og:title', content: 'Leetcode 题解 | ErpanOmer' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:url', content: 'https://erpanomer.nurverse.com/projects/leetcode/' }],
+    
+    // 5. 移动端优化
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }]
+  ],
   sitemap: {
-    hostname: 'https://erpanomer.nurverse.com'
+    hostname: 'https://erpanomer.nurverse.com/projects/leetcode/'
   },
   themeConfig: {
     siteTitle: 'Leetcode',
+    logo: 'https://erpanomer.nurverse.com/favicon-32x32.png',
     // 主题级选项
-    nav,
+    nav: [
+      ...nav,
+      { text: '返回主站', link: 'https://erpanomer.nurverse.com/' },
+    ],
     sidebar,
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ErpanOmer' },
