@@ -32,6 +32,7 @@ export default defineConfig({
     hostname: 'https://erpanomer.nurverse.com/projects/leetcode/'
   },
   themeConfig: {
+    prefetch: false,
     siteTitle: 'Leetcode',
     logo: 'https://erpanomer.nurverse.com/favicon-32x32.png',
     // 主题级选项
@@ -76,7 +77,9 @@ export default defineConfig({
   vite: {
     build: {
       // 禁用资源预加载（Module Preload）
-      modulePreload: false, 
+      modulePreload: {
+        polyfill: false
+      }, 
     }
   },
   vue: {
