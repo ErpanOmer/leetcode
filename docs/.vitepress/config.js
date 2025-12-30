@@ -69,5 +69,8 @@ export default defineConfig({
     } else {
       console.error('❌ [VitePress] Source functions folder not found at:', srcDir);
     }
+  },
+  shouldPreload: (file, type) => {
+    return false;
   }
 })
