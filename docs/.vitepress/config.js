@@ -5,12 +5,12 @@ export default defineConfig({
   // 站点级选项
   title: 'Leetcode',
   description: 'Just playing around.',
-  // base: '/leetcode/',
+  base: '/projects/leetcode/',
   cleanUrls: true,
   lastUpdated: true,
   appearance: 'force-dark',
   sitemap: {
-    hostname: 'https://leetcode.nurverse.com'
+    hostname: 'https://erpanomer.nurverse.com'
   },
   themeConfig: {
     siteTitle: 'Leetcode',
