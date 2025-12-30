@@ -31,6 +31,9 @@ export default defineConfig({
   sitemap: {
     hostname: 'https://erpanomer.nurverse.com/projects/leetcode/'
   },
+  router: {
+    prefetchLinks: false
+  },
   themeConfig: {
     prefetch: false,
     siteTitle: 'Leetcode',
