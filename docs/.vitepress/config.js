@@ -73,6 +73,12 @@ export default defineConfig({
   shouldPreload: (file, type) => {
     return false;
   },
+  vite: {
+    build: {
+      // 禁用资源预加载（Module Preload）
+      modulePreload: false, 
+    }
+  },
   vue: {
     template: {
       compilerOptions: {
