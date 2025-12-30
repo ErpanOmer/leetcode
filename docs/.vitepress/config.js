@@ -72,5 +72,13 @@ export default defineConfig({
   },
   shouldPreload: (file, type) => {
     return false;
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        // 确保不会将 link 标签误认为自定义元素，并保持默认处理逻辑
+        isCustomElement: (tag) => tag === 'link'
+      }
+    }
   }
 })
