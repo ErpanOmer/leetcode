@@ -1,6 +1,0 @@
-# leetcode 项目根目录下的 wrangler.toml
-name = "leetcode"
-pages_build_output_dir = "docs/.vitepress/dist"
-
-[functions]
-directory = "functions" # 明确指向你移动后的那个文件夹
