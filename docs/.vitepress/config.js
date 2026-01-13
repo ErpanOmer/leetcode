@@ -14,9 +14,6 @@ export default defineConfig({
   head: [
     // 基础 favicon
     ['link', { rel: 'icon', href: 'https://erpanomer.nurverse.com/favicon.ico' }],
-    // 2. Canonical
-    ['link', { rel: 'canonical', href: 'https://erpanomer.nurverse.com/projects/leetcode/' }],
-    
     // 3. SEO 关键词
     ['meta', { name: 'keywords', content: 'leetcode, algorithm, 算法, 题解' }],
     
@@ -74,23 +71,15 @@ export default defineConfig({
       console.error('❌ [VitePress] Source functions folder not found at:', srcDir);
     }
   },
-  shouldPreload: (file, type) => {
-    return false;
-  },
-  vite: {
-    build: {
-      // 禁用资源预加载（Module Preload）
-      modulePreload: {
-        polyfill: false
-      }, 
-    }
-  },
-  vue: {
-    template: {
-      compilerOptions: {
-        // 确保不会将 link 标签误认为自定义元素，并保持默认处理逻辑
-        isCustomElement: (tag) => tag === 'link'
-      }
-    }
+   transformPageData(pageData) {
+    const canonicalUrl = `https://erpanomer.nurverse.com/projects/leetcode/${pageData.relativePath}`
+      .replace(/index\.md$/, '')
+      .replace(/\.md$/, '')
+
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: canonicalUrl }
+    ])
   }
 })
