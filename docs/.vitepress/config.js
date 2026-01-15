@@ -42,10 +42,10 @@ export default defineConfig({
     ],
     sidebar,
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/ErpanOmer' },
+      { icon: 'github', link: 'https://github.com/ErpanOmer/leetcode/' },
     ],
     footer: {
-      message: '❤ With Algorithm',
+      message: '如果这个项目对您有帮助，请给个 Star ⭐',
       copyright: `Copyright © ${new Date().getFullYear()}-present Erpan Omer`
     },
   },
